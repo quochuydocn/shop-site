@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Patin Pro</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'App/CSS/bootstrap.min.css' %}" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="{% static 'App/CSS/bootstrap-theme.min.css' %}" />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{% static 'App/JS/bootstrap.min.js' %}" ></script>
+    <script src="C:/Users/Administrator/Desktop/shopxinh/static/App/JS/jquery-1.7.2.min.js" ></script>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'App/Favicon/p.png' %}"/>
+    <style>
+#HOUSE-TEASER {
+  position: relative;
+  width: 686px;
+  }
+#HOUSES {
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+  background-position: left top;
+  background-repeat: no-repeat;
+  border: 1px solid grey;
+    /*padding: 0;*/
+  white-space:nowrap;
+}
+
+#HOUSES img {
+  height: auto;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+.house {
+  position: relative;
+  display: inline-block;
+  padding: 5% 15px 0;
+  min-width: 137px;
+}
+
+  .nxt,
+  .prv {
+    width: 27px;
+    height: 65px;
+    top: 25px;
+    margin: 10px;
+    position: absolute;
+    z-index: 100;
+    cursor: pointer;
+  }
+  .nxt:hover,
+  .prv:hover {
+    margin: 10px 8px;
+  }
+  .prv {
+    background: red;
+    left: 0;
+  }
+  .nxt {
+    background: red;
+    right: 0;
+  }
+
+    </style>
+
+
+  </head>
+  <body>
+    <div id="HOUSE-TEASER">
+    	<div class="prv" style="display:none;">P</div>
+    	<ul id="HOUSES" class="slider">
+    		<li class="house startpoint first">
+    			TEST1
+    		</li>
+    		<li class="house">
+    			TEST2
+    		</li>
+    		<li class="house">
+    			TEST3
+    		</li>
+    		<li class="house endpoint">
+    			TEST4
+    		</li>
+    		<li class="house">
+    			TEST5
+    		</li>
+        <li class="house">
+    			TEST6
+    		</li>
+            <li class="house">
+    			TEST7
+    		</li>
+            <li class="house">
+    			TEST8
+    		</li>
+    		<li class="house last">
+    			TEST9
+    		</li>
+    	</ul>
+        <div class="nxt">N</div>
+    </div>
+
+    <script>
+    var house = $(".house").length;
+    var allWidth = $("#HOUSE-TEASER").width();
+    $(".house").css("width", function(){
+      return (allWidth / house - 40);
+    });
+
+    //  S L I D E   E L E M E N T
+    $('.prv, .nxt').click(function(e){debugger;
+      $(this).siblings('.slider').stop().animate({
+          scrollLeft: (this.className.match('nxt')?'+=':'-=')+200
+      },200);
+
+            if(this.className=='nxt'){
+                $('.prv').show();
+                var startpoint=$('.startpoint');
+                startpoint.removeClass('startpoint');
+                startpoint.next().addClass('startpoint');
+                var endpoint=$('.endpoint');
+               endpoint.removeClass('endpoint');
+               endpoint.next().addClass('endpoint');
+
+               debugger;
+               if($('.last').attr('class')==$('.endpoint').attr('class')){
+                   $('.nxt').hide();
+                 }
+            }
+
+            if(this.className=='prv'){
+                $('.nxt').show();
+                var startpoint=$('.startpoint');
+                startpoint.removeClass('startpoint');
+                startpoint.prev().addClass('startpoint');
+                var endpoint=$('.endpoint');
+               endpoint.removeClass('endpoint');
+               endpoint.prev().addClass('endpoint');
+
+               debugger;
+               if($('.first').attr('class')==$('.startpoint').attr('class')){
+                   $('.prv').hide();
+                 }
+            }
+
+
+    });
+
+
+    </script>
+
+  </body>
+
+
+
+</html>
